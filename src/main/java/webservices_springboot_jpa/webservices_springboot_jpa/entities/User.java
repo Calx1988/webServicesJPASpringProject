@@ -1,10 +1,16 @@
 package webservices_springboot_jpa.webservices_springboot_jpa.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "users")
 public class User implements Serializable {
-    private Long Id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
     private String email;
     private String phone;
@@ -14,7 +20,7 @@ public class User implements Serializable {
     }
 
     public User(Long id, String name, String email, String phone, String password) {
-        Id = id;
+        this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -22,11 +28,11 @@ public class User implements Serializable {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -66,11 +72,11 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Id.equals(user.Id) && email.equals(user.email);
+        return id.equals(user.id) && email.equals(user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, email);
+        return Objects.hash(id, email);
     }
 }
