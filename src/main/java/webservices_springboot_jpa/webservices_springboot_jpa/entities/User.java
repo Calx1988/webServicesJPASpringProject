@@ -1,5 +1,7 @@
 package webservices_springboot_jpa.webservices_springboot_jpa.entities;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String password;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private List<Order> orders = new ArrayList<>();
     public User() {
