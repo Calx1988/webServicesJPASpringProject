@@ -49,23 +49,27 @@ public class TestConfig implements CommandLineRunner {
                 "Fantasy written by J.R.R Tolkien",
                 439.90,
                 "Aragorn holding sword");
+        p1.getCategories().add(c2);
         Product p2 = new Product(null, "The Witcher 3",
                 "Fantasy game by CD Projekt Red",
                 29.90,
                 "Geralt fighting");
+        p2.getCategories().add(c3);
         Product p3 = new Product(null, "Iphone Charger",
                 "Charger for IPhone 10",
                 89.90,
                 "Charging phone");
+        p3.getCategories().add(c1);
         Product p4 = new Product(null, "Dungeons & Dragons: Tasha’s Cauldron of Everything",
                 "Book by Wizards RPG",
                 219.00,
                 "Mage casting spell");
+        p4.getCategories().add(c2);
         Product p5 = new Product(null, "Days Gone",
                 "Post apocalyptic game by Bend Studio",
                 79.90,
                 "Deacon St. John with his bike");
-
+        p5.getCategories().add(c3);
 
         userRepository.saveAll(Arrays.asList(u1,u2));
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));

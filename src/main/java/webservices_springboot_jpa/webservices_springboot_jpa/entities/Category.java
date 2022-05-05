@@ -1,5 +1,7 @@
 package webservices_springboot_jpa.webservices_springboot_jpa.entities;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,7 +16,8 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Transient
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
 
     public Category() {
