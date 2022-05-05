@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Profile;
 import webservices_springboot_jpa.webservices_springboot_jpa.entities.Order;
 import webservices_springboot_jpa.webservices_springboot_jpa.entities.User;
 import webservices_springboot_jpa.webservices_springboot_jpa.entities.enums.OrderStatus;
+import webservices_springboot_jpa.webservices_springboot_jpa.repositories.CategoryRepository;
 import webservices_springboot_jpa.webservices_springboot_jpa.repositories.OrderRepository;
 import webservices_springboot_jpa.webservices_springboot_jpa.repositories.UserRepository;
 
@@ -20,6 +21,8 @@ public class TestConfig implements CommandLineRunner {
     private UserRepository userRepository;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -34,5 +37,6 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1,u2));
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+        categoryRepository.saveAll(Arrays.asList());
     }
 }
