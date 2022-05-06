@@ -60,10 +60,10 @@ public class TestConfig implements CommandLineRunner {
                 79.90,
                 "Deacon St. John with his bike");
         p5.getCategories().add(c3);
-        Product p6 = new Product(null, "Tennis Ball w/3",
-                "Package with 3 tennis balls",
-                1289.90,
-                "Gustavo Kuerten playing with racket");
+        Product p6 = new Product(null, "Tennis Ball Professional",
+                "Package with 3 tennis balls Wilson",
+                19.90,
+                "Tennis balls being hit");
         p6.getCategories().add(c4);
 
         categoryRepository.saveAll(Arrays.asList(c1,c2,c3, c4));
@@ -76,7 +76,7 @@ public class TestConfig implements CommandLineRunner {
         User u3 = new User(null, "Samantha Weber",
                 "samantha@gmail.com", "51985678765", "samantha");
 
-        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, u1);
+        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.WAITING_PAYMENT, u1);
         Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.SHIPPED, u2);
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.DELIVERED, u3);
 
@@ -92,5 +92,9 @@ public class TestConfig implements CommandLineRunner {
 
         orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 
+        Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
+        o1.setPayment(pay1);
+
+        orderRepository.save(o1);
     }
 }
