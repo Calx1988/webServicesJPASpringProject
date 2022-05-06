@@ -4,12 +4,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import webservices_springboot_jpa.webservices_springboot_jpa.entities.enums.OrderStatus;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
 public class Order implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,6 +24,9 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private User customer;
+
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
 
     public Order() {
     }
@@ -62,5 +70,9 @@ public class Order implements Serializable {
 
     public void setCustomer(User customer) {
         this.customer = customer;
+    }
+
+    public Set<OrderItem> getItems(){
+        return items;
     }
 }
